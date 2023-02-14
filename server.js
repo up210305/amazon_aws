@@ -1,17 +1,16 @@
+const { createReadStream } = require('fs');
 const http = require('http');
 
-const port = 3000;
+const port = 8080;
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.send('<h1> Hello World </h1>' );
-  
-
+  res.end(' Hello World ' );
+  createReadStream('clock.html').pipe(res)
 });
-
-
 
 server.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
+
