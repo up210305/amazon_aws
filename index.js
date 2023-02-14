@@ -1,8 +1,10 @@
+import http from 'http'
+import fs from 'fs'
+
 const path = require('path')
 const {createReadStream} = require('fs')
 const {createServer} = require('http')
 
-// configuramos con una variable de entorno el puerto
 const {PORT = 3000} = process.env
 
 const HTML_CONTENT_TYPE = 'text/html'
@@ -19,7 +21,7 @@ const requestListener = (req, res) => {
 
   // si estamos pidiendo la ruta principal, devolvemos el contenido del index.html
   if (url === '/') {
-    stream = createReadStream(`${PUBLIC_FOLDER}/index.html`)
+    stream = createReadStream(`${PUBLIC_FOLDER}/clock.html`)
   } else if (url.match("\.css$")) { // para los archivos CSS
     contentType = CSS_CONTENT_TYPE
     stream = createReadStream(`${PUBLIC_FOLDER}${url}`)
